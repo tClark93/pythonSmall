@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+    <div class='container' style:'margin-left:0px;'>
+        <h1>Login and Registration</h1>
+        <div class=class="d-flex p-2 bd-highlight">
+            <div class="d-flex align-items-start">
+                <div class='container'>
+                    <div>
+                        <h3>Register Here!</h3>
+                    </div>
+                        <form action="/submit" method='POST'>
+                            <div class="form-group">
+                                <label for="firstName">First Name:</label>
+                                {% with messages = get_flashed_messages(category_filter=['shortFirst','numFirst']) %}
+                                    {% if messages%}
+                                        {% for message in messages%}
+                                            <p style="color:red; margin:0px; font-size:10px;">{{message}}</p>
+                                        {%endfor%}
+                                    {%endif%}
+                                {%endwith%}
+                                <input type="text" class="form-control" name="firstName" aria-describedby="" placeholder="First Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="registerLastName">Last Name:</label>
+                                {% with messages = get_flashed_messages(category_filter=['shortLast','numLast']) %}
+                                    {% if messages%}
+                                        {% for message in messages%}
+                                            <p style="color:red; margin:0px; font-size:10px;">{{message}}</p>
+                                        {%endfor%}
+                                    {%endif%}
+                                {%endwith%}
+                                <input type="text" class="form-control" id="registerLastName" aria-describedby="" name='lastName' placeholder="Last Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="registerEmail">Email Address:</label>
+                                {% with messages = get_flashed_messages(category_filter=['invalidEmail']) %}
+                                    {% if messages%}
+                                        {% for message in messages%}
+                                            <p style="color:red; margin:0px; font-size:10px;">{{message}}</p>
+                                        {%endfor%}
+                                    {%endif%}
+                                {%endwith%}
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name='registerEmail' placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="registerPassword">Password:</label>
+                                {% with messages = get_flashed_messages(category_filter=['shortPass']) %}
+                                    {% if messages%}
+                                        {% for message in messages%}
+                                            <p style="color:red; margin:0px; font-size:10px;">{{message}}</p>
+                                        {%endfor%}
+                                    {%endif%}
+                                {%endwith%}
+                                <input type="password" class="form-control" name='password' id="registerPassword" placeholder="Create Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Confirm Password:</label>
+                                {% with messages = get_flashed_messages(category_filter=['conPass']) %}
+                                    {% if messages%}
+                                        {% for message in messages%}
+                                            <p style="color:red; margin:0px; font-size:10px;">{{message}}</p>
+                                        {%endfor%}
+                                    {%endif%}
+                                {%endwith%}
+                                <input type="password" class="form-control" name='confirmPassword' id="confirmPassword" placeholder="Confirm Password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                </div>
+                <div class="d-flex align-items-end">
+                    <div class='container'>
+                        <h3>Login Here!</h3>
+                            <form>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1">Email Address:</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Login Email">
+                                </div>
+                                <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Login Password">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <form action='/process' method='post'>
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col">
+                    <label for='name'>Name:</label>
+                </div>
+                <div class="col">
+                  <input type="text" name='name' class="form-control" placeholder="Name">
+                </div><br>
+                <br>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for='dojo_location'>Dojo Location:</label>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <select name='dojo_location' class="form-control" id="exampleFormControlSelect1">
+                          <option name='chicago'>Chicago</option>
+                          <option name='dallas'>Dallas</option>
+                          <option name='seattle'>Seattle</option>
+                          <option name='tulse'>Tulsa</option>
+                          <option name='tysonscorner'>Tyson's Corner</option>
+                        </select>
+                      </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for='fav_lang'>Favorite Language:</label>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <select name='fav_lang' class="form-control" id="exampleFormControlSelect1">
+                          <option name='css'>CSS</option>
+                          <option name='c'>C#</option>
+                          <option name='mean'>Mean</option>
+                          <option name='python'>Python</option>
+                          <option name='ruby'>Ruby</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Comments:</label>
+                <textarea class="form-control" name='comment' rows="8"></textarea>
+            </div>
+            <button type='submit' class="btn btn-warning">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

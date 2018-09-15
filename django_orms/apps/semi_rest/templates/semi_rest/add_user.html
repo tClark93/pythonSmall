@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+    <div class='container'>
+        <h1>Add a New User:</h1>
+        <div class='container'>
+            {% if messages %}
+                {% for i in messages %}
+                    <p style="color:red">{{ i }}</p>
+                {% endfor %}
+            {% endif %}
+            <form action='/users/create' method='post'>
+                {%csrf_token%}
+                    <div class="form-group">
+                        <label for="first_name">First Name:</label>
+                        <input type="text" class="form-control" name='first_name'>
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" class="form-control" name='last_name'>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" name='email'>
+                    </div>
+                <button type="submit" class="btn btn-danger">Add a New User</button>
+            </form>
+            <a href='/users'>Go Back</a>
+        </div>
+    </div>
+    
+</body>
+</html>

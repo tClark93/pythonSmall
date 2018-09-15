@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table{
+            padding:0px;
+            border-spacing: 0px;
+        }
+        th{
+            background-color:navy;
+            height: 50px;
+            width: 50px;
+            border: 1px solid black;
+            margin:0px;
+        } 
+    </style>
+</head>
+<body>
+     <table>
+        {% for i in range(0,x)%}
+            <tr>
+                {% for j in range(0,y)%}
+                    {%if (j+i)%2==1%}
+                <th style="background-color:lightskyblue;"></th>
+                    {%endif%}
+                    {%if (j+i)%2 ==0%}
+                <th></th>
+                    {%endif%}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

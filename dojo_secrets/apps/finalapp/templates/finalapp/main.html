@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <h1 class="navbar-brand">Dojo Secrets</h1>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/main">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/top">Top Secrets <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+            <span class="navbar-text" style='margin-right: 15px;'><a href='/logout'>Log Out</a></span>
+        </div>
+    </nav>
+    <div class='container'>
+        <h1 style="margin:50px">Hello, {{ user.first_name }}!</h1>
+        <h5>Tell us Something Naughty...</h5>
+        <form action='/share' method='post'>
+            {%csrf_token%}
+            <input type='hidden' name='user_id' value ='{{user.id}}'>
+            <div class='container' style="display: flex; justify-content: center">
+                <textarea name='secret' type="text" placeholder="Enter something" rows="5" style="width: 90%; margin:5px; border-radius: 3px;"></textarea>
+            </div>
+            <div class='container' style="display: flex; justify-content: flex-end; margin:5px;  width: 95%;">
+                <button type="submit" class="btn btn-warning">Post!</button>
+            </div>
+        </form>
+    </div>
+    <div class='container'>
+        <div class='container' style="display: flex; justify-content: center;">
+            <h2 style="margin: 20px; text-decoration: underline">Recent Secrets</h2>
+        </div>
+        <div class='container' style:'width: 95%; height:300px; overflow: auto;'>
+            {%for secret in secrets%}
+                    <div class='container'>
+                        <p style="color: gray"> {{secret.created_at}}</p>
+                            <div class='container'>
+                                <p style='font-size: 20px;'>{{secret.content}}</p>
+                            </div>
+                            <div class='container' style="display: flex; margin:5px;">
+                                <span style="margin-right:8px;">{{secret.liked_by.count}}</span>
+                                {%if user not in secret.liked_by.all and user.id != secret.written_by.id%}
+                                    <form action='/like' method='post'>
+                                        {%csrf_token%}
+                                        <input type='hidden' name='secret_id' value ='{{secret.id}}'>
+                                        <button type="submit" class="btn btn-info" style='vertical-align: top; font-size: 10pt; padding: 4px;'>Like</button>
+                                    </form>
+                                {%endif%}
+                                {%if user in secret.liked_by.all%}
+                                    <span> you like</span>
+                                {%endif%}
+                                {%if user.id == secret.written_by.id%}
+                                    <form action='/delete' method='post'>
+                                        {%csrf_token%}
+                                        <input type='hidden' name='secret_id' value ='{{secret.id}}'>
+                                        <button type="submit" class="btn btn-danger" style='vertical-align: top; font-size: 10pt; padding: 4px;'>Delete</button>
+                                    </form>
+                                {%endif%}
+                            </div>
+                    </div>
+            {%endfor%}
+        </div>
+    </div>
+    
+</body>
+</html>

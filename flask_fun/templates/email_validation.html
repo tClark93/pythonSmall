@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+    <div class='container'>
+        <h1>Email Validation with Database</h1>
+        <form action="/register" method='POST'>
+            email:<br>
+            <input type="text" name="entered_email"><br>
+            {% with messages = get_flashed_messages(category_filter=['blankEmailAlert','invalidEmailAlert','doubleAlert']) %}
+                {% if messages%}
+                    {% for message in messages%}
+                        <p style="color:red;">{{message}}</p>
+                    {%endfor%}
+                {%endif%}
+            {%endwith%}
+            <button style="margin-top:5px" type='submit' value='submit' class='btn-primary'>Submit</button>
+        </form>
+    </div>
+</body>
+</html>

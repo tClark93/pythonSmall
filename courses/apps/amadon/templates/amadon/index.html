@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+    <div class='wrapper'>
+        <div class='container' style="display: flex; justify-content: center;">
+            <h1>Amadon Store</h1>
+        </div>
+        <div class='container'>
+            <form action="/amadon/process" method='post'>
+                {%csrf_token%}
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for product in products%}
+                            <tr>
+                                <td name='{{product.id}}name'>{{product.name}}</td>
+                                <td name={{product.id}}quantity>${{product.price}}</td>
+                                <td>
+                                    <select name='{{product.id}}quantity' class="form-control" id="exampleFormControlSelect1">
+                                        <option value='0'>0</option>
+                                        <option value='1'>1</option>
+                                        <option value='2'>2</option>
+                                        <option value='3'>3</option>
+                                        <option value='4'>4</option>
+                                        <option value='5'>5</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-danger">Order</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
